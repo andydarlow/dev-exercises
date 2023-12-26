@@ -3,12 +3,13 @@
 # take a different approach to the recursive solution above...
 #
 # to solve it, I've taken a vector approach. The approach is to find all vectors [x1 ... xn] that when multiplied by (dot product)
-# the vector [1...n] will result in the value n.
+# the vector range(1 .. n+1) will result in the value n.
 # To find the vector [x1 ... xn], the code recurses using simple division to find the vectors. 
 # for example:. if n = 3
 # then the vectors that add to 3 when multiplied by [1 2 3] are [3,0,0], [1,1,0] [0,0,3]
-# [1,1,0] is worked out by 3/2 = 1 remainder 1. Then recursing on 1 as n. 1/1 = 1. Hence [1,1,0] is a sultion that adds to 3
-# Once you have found all the vectors, you can do another multiple to work out the cost of that solution. for example if the coses are
+# [1,1,0] is worked out by: 3/3 = 1 r0, 3/2 = 1 remainder 1, 3/1 = 3 remainer 0.  for 3/2 recur on the remainer 1 - settong this as the new n.
+# 1/1 = 1. Hence [1,1,0] is a sultion that adds to 3 when divide 3/2
+# Once you have found all the vectors, you can do another multiple to work out the cost of that solution. for example if the costs are
 # [10,11,15] then [1,1,0] would result in a cost of 10*1+11*2+0*3=32
 from functools import reduce
 
@@ -60,6 +61,8 @@ def vector_set_index(vector, index, new_value):
 #---------------------------------------------------------------
 
 def max_combination(vector_size, costs):
+    """works out a vector of size vector_size that when multplied by the costs vector produces
+        the highest cost of all possible vectors that when mulyiplied by the vector [x1 ... xvector_size] results in the scalar vector_size"""
     vectors = []
     for i in range(1,vector_size+1):
         base_vector = vector_set_index(new_vector(vector_size),i, vector_size // i)
