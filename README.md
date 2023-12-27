@@ -1,3 +1,2 @@
 # dev-exercises
- some of my solutions to problems found on the web 
- (written to as fun to keep my coding skills fresh)
+My playpen to learn howe to better code python via doing exercises off the web
